@@ -1,14 +1,14 @@
 # API Справочник проекта ЛИНЕСС
 
-## Обзор
+## Открытый проект для сообщества
 
-Этот документ описывает публичные API модулей JavaScript, глобальные переменные, события и конфигурации проекта ЛИНЕСС.
+Этот документ описывает публичные API модулей JavaScript, глобальные переменные, события и конфигурации проекта ЛИНЕСС - открытого проекта для сообщества разработчиков. Все компоненты доступны под лицензией MIT и предназначены для совместной работы над open source проектами.
 
 ## Глобальные объекты
 
 ### window.LINESS (глобальный namespace)
 
-**Описание**: Основной namespace для всех модулей (если используется)
+**Описание**: Основной namespace для всех модулей открытого проекта
 
 **Пример**:
 ```javascript
@@ -16,7 +16,7 @@ window.LINESS = {
     cursor: CustomCursor,
     navigation: Navigation,
     background: GlobalBackground,
-    // ...
+    // Все модули доступны для использования и модификации
 };
 ```
 
@@ -24,7 +24,7 @@ window.LINESS = {
 
 ### Дизайн-система
 
-Все переменные определены в `:root` в EOFCSSVariables3.css.
+Все переменные определены в `:root` в EOFCSSVariables3.css. Дизайн-система создана для удобства сообщества в создании консистентного интерфейса.
 
 #### Цвета
 ```css
@@ -79,11 +79,13 @@ window.LINESS = {
 --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 ```
 
+**Сообщество**: Все CSS переменные документированы для удобства контрибьюторов. Вы можете добавлять новые переменные для своих contrib-ов, следуя существующей структуре.
+
 ## JavaScript Классы
 
 ### CustomCursor (EOFcursor3.js)
 
-**Описание**: Управление кастомным курсором
+**Описание**: Управление кастомным курсором для улучшения UX
 
 **Конструктор**:
 ```javascript
@@ -105,11 +107,20 @@ const cursor = new CustomCursor();
 const customCursor = new CustomCursor();
 ```
 
+**Кастомизация через CSS**:
+```css
+.cursor {
+    width: var(--cursor-size, 8px);
+    height: var(--cursor-size, 8px);
+    background: var(--color-primary, #fff);
+}
+```
+
 ---
 
 ### Navigation (EOFNavigation3.js)
 
-**Описание**: Управление навигацией и скроллом
+**Описание**: Управление навигацией и скроллом с поддержкой доступности
 
 **Конструктор**:
 ```javascript
@@ -133,11 +144,13 @@ const nav = new Navigation();
 nav.smoothScrollTo(document.getElementById('contact'), 80);
 ```
 
+**Доступность**: Поддерживает фокус-менеджмент и keyboard navigation.
+
 ---
 
 ### GlobalBackground (EOFGlobalBackground3.js)
 
-**Описание**: Интерактивный фон с анимациями
+**Описание**: Интерактивный фон с анимациями для вовлечения пользователей
 
 **Конструктор**:
 ```javascript
@@ -172,21 +185,20 @@ const background = new GlobalBackground();
 
 **Пример кастомизации**:
 ```javascript
-// Изменить количество орбов
-// (нужно модифицировать createOrbs)
-
+// Изменить количество орбов (нужно модифицировать createOrbs)
 // Изменить скорость анимации
 orb.speed = 0.03; // в конфиге
-
 // Изменить цвета (в CSS)
 // .bg-orb-1 { background: radial-gradient(circle, rgba(255,0,0,0.6) 0%, transparent 70%); }
 ```
+
+**Сообщество**: Фон является открытым компонентом. Сообщество может добавлять новые эффекты и улучшения через Pull Requests.
 
 ---
 
 ### ScrollReveal (EOFScrollReveal3.js)
 
-**Описание**: Анимации появления при скролле
+**Описание**: Анимации появления при скролле для плавного UX
 
 **Конструктор**:
 ```javascript
@@ -227,21 +239,23 @@ const reveal = new ScrollReveal();
 }
 ```
 
+**Доступность**: Уважает prefers-reduced-motion для пользователей, предпочитающих минимизировать анимации.
+
 ---
 
-### ServiceLoader (EOFServiceLoader3.js)
+### ProjectLoader (EOFServiceLoader3.js)
 
-**Описание**: Загрузка и рендеринг услуг
+**Описание**: Загрузка и рендеринг open source проектов из сообщества
 
 **Конструктор**:
 ```javascript
-const serviceLoader = new ServiceLoader();
+const projectLoader = new ProjectLoader();
 ```
 
 **Методы**:
 - `init()` - инициализация (автоматически)
 - `load()` - загрузка данных из services.json
-- `render(services)` - рендеринг карточек
+- `render(projects)` - рендеринг карточек проектов
 - `onError()` - обработка ошибок
 
 **HTML**:
@@ -249,35 +263,45 @@ const serviceLoader = new ServiceLoader();
 <div class="services-grid" id="servicesGrid"></div>
 ```
 
-**JSON формат (services.json)**:
+**JSON формат (services.json)** - open source проекты:
 ```json
 [
   {
-    "icon": "code",
-    "title": "Веб-разработка",
-    "description": "Создание современных веб-приложений",
-    "tags": ["React", "Vue", "TypeScript"]
+    "id": "opensource",
+    "title": "Open Source Проекты",
+    "description": "Создаём и поддерживаем открытые проекты для сообщества",
+    "image": "services/opensource.svg",
+    "tags": ["GitHub", "Community", "Free"]
+  },
+  {
+    "id": "collaboration",
+    "title": "Коллаборация",
+    "description": "Совместная работа над идеями и их реализация",
+    "image": "services/collaboration.svg",
+    "tags": ["Hackathons", "Jams", "Partnerships"]
   }
 ]
 ```
 
 **События**:
-- `services:loaded` - когда данные загружены
-- `services:error` - при ошибке загрузки
+- `projects:loaded` - когда данные загружены
+- `projects:error` - при ошибке загрузки
 
 **Пример**:
 ```javascript
-const loader = new ServiceLoader();
+const loader = new ProjectLoader();
 loader.load().then(() => {
-    console.log('Услуги загружены');
+    console.log('Проекты сообщества загружены');
 });
 ```
+
+**Сообщество**: services.json может редактироваться сообществом для добавления новых open source проектов и инициатив.
 
 ---
 
 ### PortfolioLoader (EOFPortfolioLoader3.js)
 
-**Описание**: Загрузка и рендеринг портфолио
+**Описание**: Загрузка и рендеринг open source портфолио проектов
 
 **Конструктор**:
 ```javascript
@@ -295,23 +319,37 @@ const portfolioLoader = new PortfolioLoader();
 <div class="portfolio-grid" id="portfolioGrid"></div>
 ```
 
-**JSON формат (portfolio.json)**:
+**JSON формат (portfolio.json)** - open source проекты с GitHub ссылками:
 ```json
 [
   {
-    "title": "Проект 1",
+    "id": 1,
+    "title": "Community Dashboard",
+    "category": "opensource",
+    "description": "Открытая панель управления для локальных сообществ",
+    "image": "portfolio/project1.jpg",
+    "link": "https://github.com/lineness/community-dashboard"
+  },
+  {
+    "id": 2,
+    "title": "Open Source Toolkit",
     "category": "web",
-    "image": "images/project1.jpg",
-    "description": "Описание проекта"
+    "description": "Набор инструментов для разработчиков",
+    "image": "portfolio/project2.jpg",
+    "link": "https://github.com/lineness/toolkit"
   }
 ]
 ```
+
+**GitHub Integration**: Проекты автоматически могут интегрироваться с GitHub API для отображения звезд, форков и последних коммитов.
+
+**Сообщество**: Все проекты в портфолио являются open source. Сообщество может добавлять свои проекты через Pull Request в portfolio.json.
 
 ---
 
 ### PortfolioFilter (EOFPortfolioFilterDynamic3.js)
 
-**Описание**: Фильтрация портфолио
+**Описание**: Динамическая фильтрация open source проектов
 
 **Конструктор**:
 ```javascript
@@ -326,10 +364,10 @@ const filter = new PortfolioFilter();
 **HTML**:
 ```html
 <div class="portfolio-filters">
-    <button class="filter-btn active" data-filter="all">Все</button>
+    <button class="filter-btn active" data-filter="opensource">Open Source</button>
     <button class="filter-btn" data-filter="web">Веб</button>
-    <button class="filter-btn" data-filter="mobile">Мобильные</button>
-    <button class="filter-btn" data-filter="design">Дизайн</button>
+    <button class="filter-btn" data-filter="education">Образование</button>
+    <button class="filter-btn" data-filter="collaboration">Коллаборация</button>
 </div>
 ```
 
@@ -340,14 +378,16 @@ const filter = new PortfolioFilter();
 **Пример**:
 ```javascript
 // Программная фильтрация
-filter.filter('web');
+filter.filter('opensource');
 ```
+
+**Сообщество**: Фильтры помогают сообществу находить проекты по интересам и направлениям. Новые категории могут быть добавлены через конфигурацию.
 
 ---
 
 ### StatsCounter (EOFStatsCounter3.js)
 
-**Описание**: Анимированные счетчики
+**Описание**: Анимированные счетчики статистики сообщества
 
 **Конструктор**:
 ```javascript
@@ -361,23 +401,32 @@ const stats = new StatsCounter();
 
 **HTML**:
 ```html
-<div class="stat-number" data-target="150">0</div>
-<div class="stat-number" data-target="50" data-duration="3000">0</div>
+<div class="stat-number" data-target="500">0</div>
+<span class="stat-label">участников</span>
 ```
 
 **Атрибуты**:
 - `data-target` - конечное значение
 - `data-duration` - длительность анимации (ms, по умолчанию 2000)
 - `data-start` - начальное значение (по умолчанию 0)
+- `data-prefix` - префикс (например, "+")
+- `data-suffix` - суффикс (например, " проектов")
 
 **События**:
 - `stats:complete` - когда все счетчики завершены
+
+**Примеры метрик сообщества**:
+- Участники сообщества
+- Количество open source проектов
+- Скачивания инструментов
+- Количество контрибьюторов
+- Количество ивентов
 
 ---
 
 ### ContactForm (EOFContactForm3.js)
 
-**Описание**: Обработка контактной формы
+**Описание**: Обработка контактной формы для связи с сообществом
 
 **Конструктор**:
 ```javascript
@@ -393,9 +442,9 @@ const contactForm = new ContactForm();
 **HTML**:
 ```html
 <form class="contact-form">
-    <input type="text" name="name" required>
-    <input type="email" name="email" required>
-    <textarea name="message" required></textarea>
+    <input type="text" name="name" required placeholder="Ваше имя">
+    <input type="email" name="email" required placeholder="Email">
+    <textarea name="message" required placeholder="Сообщение"></textarea>
     <button type="submit">Отправить</button>
 </form>
 ```
@@ -412,14 +461,17 @@ const contactForm = new ContactForm();
 const form = new ContactForm();
 document.querySelector('.contact-form').addEventListener('form:success', (e) => {
     console.log('Форма отправлена');
+    Notification.success('Спасибо за сообщение! Мы ответим в ближайшее время.');
 });
 ```
+
+**Сообщество**: Форма предназначена для связи с сообществом, предложений по сотрудничеству, вопросов об open source проектах и вкладе в проект.
 
 ---
 
 ### ChatBot (EOFChat3.js)
 
-**Описание**: Чат-бот для страницы контактов
+**Описание**: Чат-бот для взаимодействия с сообществом
 
 **Конструктор**:
 ```javascript
@@ -466,11 +518,13 @@ chat.sendMessage('Привет!');
 chat.clearHistory();
 ```
 
+**Сообщество**: Чат-бот может быть расширен сообществом для ответов на часто задаваемые вопросы о проекте, правилах вклада и open source инициативах.
+
 ---
 
 ### PerformanceOptimizer (EOFPerformance3.js)
 
-**Описание**: Оптимизация производительности
+**Описание**: Оптимизация производительности для быстрой загрузки
 
 **Конструктор**:
 ```javascript
@@ -487,12 +541,15 @@ const perf = new PerformanceOptimizer();
 - Ленивая загрузка изображений
 - Оптимизация анимаций
 - Снижение качества при низком FPS
+- Кэширование ресурсов
+
+**Сообщество**: Производительность важна для доступности проекта всем участникам сообщества, включая тех с ограниченным интернетом.
 
 ---
 
 ### LazyLoader (EOFLazyLoad3.js)
 
-**Описание**: Ленивая загрузка изображений
+**Описание**: Ленивая загрузка изображений для экономии трафика
 
 **Конструктор**:
 ```javascript
@@ -506,8 +563,8 @@ const lazyLoader = new LazyLoader();
 
 **HTML**:
 ```html
-<img data-src="image.jpg" class="lazy" alt="...">
-<img data-srcset="image-1x.jpg 1x, image-2x.jpg 2x" class="lazy" alt="...">
+<img data-src="image.jpg" class="lazy" alt="Описание">
+<img data-srcset="image-1x.jpg 1x, image-2x.jpg 2x" class="lazy" alt="Описание">
 ```
 
 **Атрибуты**:
@@ -515,11 +572,13 @@ const lazyLoader = new LazyLoader();
 - `data-srcset` - srcset для responsive изображений
 - `data-sizes` - sizes атрибут
 
+**Сообщество**: Экономит трафик и ускоряет загрузку для пользователей с ограниченным интернетом, что важно для глобального сообщества.
+
 ---
 
 ### Notification (EOFNotification3.js)
 
-**Описание**: Система уведомлений
+**Описание**: Система уведомлений для обратной связи
 
 **Конструктор**:
 ```javascript
@@ -547,11 +606,13 @@ Notification.success('Данные сохранены!');
 Notification.error('Ошибка отправки формы');
 ```
 
+**Сообщество**: Уведомления помогают сообществу понимать статус операций (отправка формы, загрузка данных, contribution и т.д.).
+
 ---
 
 ### ReducedMotion (EOFReducedMotion3.js)
 
-**Описание**: Учет предпочтений движения
+**Описание**: Учет предпочтений движения для доступности
 
 **Конструктор**:
 ```javascript
@@ -569,6 +630,8 @@ const duration = motion.shouldReduce() ? 0 : 0.8;
 
 element.style.transition = `all ${duration}s ease`;
 ```
+
+**Сообщество**: Обеспечивает доступность сайта для всех пользователей сообщества, включая тех, кто предпочитает минимизировать анимации.
 
 ---
 
@@ -592,73 +655,153 @@ const splitter = new TextSplitter('.hero-title');
 splitter.split(); // Разделяет на <span> по буквам/словам
 ```
 
+**Сообщество**: Создает привлекательные анимации для вовлечения посетителей сообщества.
+
+---
+
 ## События (Custom Events)
 
 ### Глобальные события
 
 ```javascript
-// Услуги загружены
-document.dispatchEvent(new CustomEvent('services:loaded', {
-    detail: { services: [...] }
+// Проекты сообщества загружены
+document.dispatchEvent(new CustomEvent('projects:loaded', {
+    detail: { projects: [...] }
 }));
 
-// Портфолио загружено
+// Портфолио open source проектов загружено
 document.dispatchEvent(new CustomEvent('portfolio:loaded', {
     detail: { items: [...] }
 }));
 
 // Фильтрация портфолио
 document.dispatchEvent(new CustomEvent('portfolio:filtered', {
-    detail: { category: 'web', count: 5 }
+    detail: { category: 'opensource', count: 5 }
 }));
 
 // Форма отправлена
 document.dispatchEvent(new CustomEvent('form:submitted', {
     detail: { data: {...} }
 }));
+
+// Contribution предложение
+document.dispatchEvent(new CustomEvent('contribution:submitted', {
+    detail: { type: 'bugfix', description: '...' }
+}));
 ```
 
 ### Подписка на события
 
 ```javascript
-document.addEventListener('services:loaded', (e) => {
-    console.log('Услуги:', e.detail.services);
+document.addEventListener('projects:loaded', (e) => {
+    console.log('Проекты сообщества:', e.detail.projects);
 });
 
 document.addEventListener('portfolio:filtered', (e) => {
     console.log('Фильтр:', e.detail.category);
 });
+
+document.addEventListener('contribution:submitted', (e) => {
+    console.log('Новый вклад:', e.detail);
+});
 ```
 
 ## JSON API
 
-### services.json
+### services.json (Open Source Проекты Сообщества)
+
 ```json
 [
   {
-    "id": 1,
-    "icon": "code",
-    "title": "Веб-разработка",
-    "description": "Создание современных веб-приложений",
-    "tags": ["React", "Vue", "TypeScript"],
-    "featured": true
+    "id": "opensource",
+    "title": "Open Source Проекты",
+    "description": "Создаём и поддерживаем открытые проекты для сообщества",
+    "image": "services/opensource.svg",
+    "tags": ["GitHub", "Community", "Free"],
+    "github": "https://github.com/lineness",
+    "contributors": 15,
+    "stars": 234
+  },
+  {
+    "id": "collaboration",
+    "title": "Коллаборация",
+    "description": "Совместная работа над идеями и их реализация",
+    "image": "services/collaboration.svg",
+    "tags": ["Hackathons", "Jams", "Partnerships"],
+    "github": null,
+    "contributors": null,
+    "stars": null
   }
 ]
 ```
 
-### portfolio.json
+**Поля**:
+- `id` - уникальный идентификатор
+- `title` - название проекта/инициативы
+- `description` - описание
+- `image` - путь к изображению
+- `tags` - массив тегов
+- `github` - ссылка на GitHub репозиторий (опционально)
+- `contributors` - количество контрибьюторов (опционально)
+- `stars` - количество звезд на GitHub (опционально)
+
+### portfolio.json (Open Source Портфолио)
+
 ```json
 [
   {
     "id": 1,
-    "title": "Проект 1",
-    "category": "web",
-    "image": "images/project1.jpg",
-    "description": "Описание проекта",
-    "link": "https://example.com",
+    "title": "Community Dashboard",
+    "category": "opensource",
+    "description": "Открытая панель управления для локальных сообществ",
+    "image": "portfolio/project1.jpg",
+    "link": "https://github.com/lineness/community-dashboard",
+    "github": "lineness/community-dashboard",
+    "tags": ["React", "Node.js", "Open Source"],
+    "stars": 156,
+    "forks": 34,
+    "lastCommit": "2024-03-01",
     "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Open Source Toolkit",
+    "category": "web",
+    "description": "Набор инструментов для разработчиков",
+    "image": "portfolio/project2.jpg",
+    "link": "https://github.com/lineness/toolkit",
+    "github": "lineness/toolkit",
+    "tags": ["JavaScript", "CLI", "DevTools"],
+    "stars": 89,
+    "forks": 12,
+    "lastCommit": "2024-02-28",
+    "featured": false
   }
 ]
+```
+
+**Поля**:
+- `id` - уникальный идентификатор
+- `title` - название проекта
+- `category` - категория (opensource, web, education, collaboration)
+- `description` - описание проекта
+- `image` - путь к изображению
+- `link` - внешняя ссылка (обычно GitHub)
+- `github` - owner/repo для GitHub API (опционально)
+- `tags` - массив технологий
+- `stars` - звезды на GitHub (опционально)
+- `forks` - форки на GitHub (опционально)
+- `lastCommit` - дата последнего коммита (опционально)
+- `featured` - выделенный проект (boolean)
+
+**GitHub API Integration**: Если указано поле `github`, модуль может автоматически получать данные из GitHub API:
+```javascript
+// Пример запроса к GitHub API
+fetch(`https://api.github.com/repos/${github}`)
+    .then(response => response.json())
+    .then(data => {
+        // Обновление stars, forks, lastCommit
+    });
 ```
 
 ## Конфигурация
@@ -667,22 +810,69 @@ document.addEventListener('portfolio:filtered', (e) => {
 
 ```html
 <!-- Для счетчиков -->
-<div class="stat-number" data-target="150" data-duration="3000" data-start="10">0</div>
+<div class="stat-number" data-target="500" data-duration="3000" data-start="10" data-prefix="+" data-suffix=" участников">0</div>
 
 <!-- Для анимаций -->
 <div class="reveal" data-reveal-offset="100" data-reveal-duration="1s">Контент</div>
+
+<!-- Для проектов -->
+<div class="project-card" data-github="lineness/project">...</div>
 ```
 
 ### Настройки через JavaScript
 
 ```javascript
-// Глобальные настройки (если реализовано)
+// Глобальные настройки
 window.LINESS_CONFIG = {
     animationDuration: 800,
     scrollOffset: 80,
     enableParallax: true,
-    reduceMotion: false
+    reduceMotion: false,
+    githubAPI: {
+        enabled: true,
+        cacheTime: 3600000 // 1 час
+    },
+    community: {
+        showContributors: true,
+        enableContributions: true
+    }
 };
+```
+
+## GitHub API Integration
+
+### Получение данных о репозитории
+
+```javascript
+// Получение информации о репозитории
+const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+const repoData = await response.json();
+
+// Поля: stargazers_count, forks_count, updated_at, open_issues_count
+```
+
+### Получение контрибьюторов
+
+```javascript
+// Получение списка контрибьюторов
+const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contributors`);
+const contributors = await response.json();
+
+// Массив объектов с полями: login, contributions, avatar_url
+```
+
+**Rate Limiting**: GitHub API имеет лимиты. Используйте кэширование и аутентификацию через токен для увеличения лимитов.
+
+**Кэширование**:
+```javascript
+const cacheKey = `github_${owner}_${repo}`;
+const cached = localStorage.getItem(cacheKey);
+if (cached) {
+    const { data, timestamp } = JSON.parse(cached);
+    if (Date.now() - timestamp < 3600000) {
+        return data; // Использовать кэш
+    }
+}
 ```
 
 ## Обработка ошибок
@@ -692,12 +882,33 @@ window.LINESS_CONFIG = {
 ```javascript
 window.addEventListener('error', (event) => {
     console.error('Global error:', event.error);
-    // Отправка на сервер мониторинга
+    // Отправка на сервер мониторинга (если есть)
+    // Логирование в консоль для отладки
 });
 
 window.addEventListener('unhandledrejection', (event) => {
     console.error('Unhandled promise rejection:', event.reason);
 });
+```
+
+**Сообщество**: Все ошибки должны быть понятными и полезными для пользователей. Используйте Notification для отображения ошибок.
+
+### Обработка ошибок загрузки данных
+
+```javascript
+loadData(url) {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(data => this.render(data))
+        .catch(error => {
+            console.error('Load error:', error);
+            Notification.error('Не удалось загрузить данные. Проверьте подключение к интернету.');
+            this.renderError();
+        });
+}
 ```
 
 ## Браузерные API
@@ -709,6 +920,7 @@ window.addEventListener('unhandledrejection', (event) => {
 - CustomEvent
 - localStorage
 - matchMedia (prefers-reduced-motion)
+- GitHub API (если настроено)
 
 ### Polyfills (если нужны)
 Для поддержки старых браузеров могут потребоваться polyfills:
@@ -716,21 +928,54 @@ window.addEventListener('unhandledrejection', (event) => {
 - `IntersectionObserver` - для Safari < 12.1
 - `CustomEvent` - для IE
 
+**Сообщество**: Проект стремится поддерживать современные браузеры. Polyfills принимаются через Pull Requests.
+
 ## Производительность
 
-### Рекомендации
-1. Используйте `requestAnimationFrame` для анимаций
-2. Кэшируйте DOM элементы
-3. Делегируйте события
-4. Используйте IntersectionObserver вместо scroll событий
-5. Минимизируйте reflows и repaints
+### Рекомендации для контрибьюторов
 
-### Метрики
+1. **Используйте `requestAnimationFrame`** для анимаций
+2. **Кэшируйте DOM элементы** в `this.elements`
+3. **Делегируйте события** на родительские элементы
+4. **Используйте IntersectionObserver** вместо scroll событий
+5. **Минимизируйте reflows и repaints**
+6. **Ленивая загрузка** изображений и тяжелых ресурсов
+7. **Оптимизируйте fetch запросы** с кэшированием
+
+### Метрики для мониторинга
 - FPS (кадров в секунду)
 - First Contentful Paint
 - Time to Interactive
 - Total Blocking Time
+- Lighthouse score
+
+**Сообщество**: Все контрибьюторы должны следить за производительностью. Используйте Lighthouse и DevTools для анализа.
+
+## Вклад в проект (Contributing)
+
+### Как стать контрибьютором:
+
+1. **Fork репозитория**
+2. **Создайте ветку** для новой функциональности
+3. **Внесите изменения** следуя стандартам кода
+4. **Протестируйте** на разных браузерах и устройствах
+5. **Обновите документацию** (если меняете API)
+6. **Отправьте Pull Request**
+7. **Пройдите code review** от сообщества
+
+### Стандарты кода:
+- Используйте ES6+ синтаксис
+- Следуйте существующему стилю кода
+- Добавляйте комментарии для сложной логики
+- Пишите тесты для новых модулей
+- Обновляйте документацию
+
+### Лицензия:
+MIT License - свободное использование, модификация и распространение.
+
+### Кодекс поведения:
+Сообщество ЛИНЕСС придерживается принципов открытости, уважения и сотрудничества. Все контрибьюторы должны соблюдать Code of Conduct.
 
 ---
 
-*Версия: 1.0.0* | *Последнее обновление: 2024*
+*Версия: 1.0.0* | *Лицензия: MIT* | *Проект открыт для сообщества*
