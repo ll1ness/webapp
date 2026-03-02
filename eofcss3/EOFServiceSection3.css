@@ -18,6 +18,7 @@
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    cursor: none;
 }
 
 .service-card::before {

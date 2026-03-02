@@ -28,35 +28,19 @@ class GlobalBackground {
     
     createOrbs() {
         const orbConfigs = [
-            { class: 'bg-orb-1', x: -200, y: -200 },
-            { class: 'bg-orb-2', x: -150, y: -150 },
-            { class: 'bg-orb-3', x: 50, y: 50 },
-            { class: 'bg-orb-4', x: 10, y: 20 },
-            { class: 'bg-orb-5', x: -10, y: -10 }
+            { class: 'bg-orb-1' },
+            { class: 'bg-orb-2' },
+            { class: 'bg-orb-3' },
+            { class: 'bg-orb-4' },
+            { class: 'bg-orb-5' }
         ];
         
-        orbConfigs.forEach((config, index) => {
+        orbConfigs.forEach((config) => {
             const orb = document.createElement('div');
             orb.className = `bg-orb ${config.class}`;
-            
-            // Set initial positions relative to viewport
-            if (index === 2) {
-                // orb-3 is centered
-                orb.style.left = '50%';
-                orb.style.top = '50%';
-                orb.style.transform = 'translate(-50%, -50%)';
-            } else {
-                orb.style.left = `${config.x}%`;
-                orb.style.top = `${config.y}%`;
-            }
-            
             this.container.appendChild(orb);
             this.orbs.push({
                 element: orb,
-                baseX: config.x,
-                baseY: config.y,
-                offsetX: 0,
-                offsetY: 0,
                 speed: 0.02 + Math.random() * 0.02
             });
         });
@@ -128,17 +112,12 @@ class GlobalBackground {
                 mouseInfluenceY = mouseNormY * 50 * (index + 1) * 0.3;
             }
             
-            // Combine movements
-            const finalX = orb.baseX + floatX + mouseInfluenceX;
-            const finalY = orb.baseY + floatY + mouseInfluenceY;
+            // Combine movements - just add offsets to existing CSS positioning
+            const finalX = floatX + mouseInfluenceX;
+            const finalY = floatY + mouseInfluenceY;
             
-            // Apply transform (special handling for centered orb)
-            if (index === 2) {
-                orb.element.style.transform = `translate(calc(-50% + ${finalX}px), calc(-50% + ${finalY}px))`;
-            } else {
-                orb.element.style.left = `${finalX}%`;
-                orb.element.style.top = `${finalY}%`;
-            }
+            // Apply as transform overlay
+            orb.element.style.transform = `translate(${finalX}px, ${finalY}px)`;
         });
         
         requestAnimationFrame(() => this.animate());
