@@ -11,7 +11,7 @@
 }
 
 .chat-header {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     padding: 16px 24px;
     border-bottom: 1px solid var(--glass-border);
     display: flex;
@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-bg);
     font-size: 1.25rem;
 }
 
@@ -84,7 +85,7 @@
 
 .chat-message.user {
     background: var(--gradient-primary);
-    color: white;
+    color: var(--color-bg);
     align-self: flex-end;
     border-bottom-right-radius: 4px;
 }
@@ -126,7 +127,7 @@
 .chat-input:focus {
     outline: none;
     border-color: var(--color-primary);
-    background: rgba(99, 102, 241, 0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .chat-send {
@@ -135,8 +136,8 @@
     background: var(--gradient-primary);
     border: none;
     border-radius: var(--radius-md);
-    color: white;
-    cursor: pointer;
+    color: var(--color-bg);
+    cursor: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,11 +146,10 @@
 
 .chat-send:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
 }
 
 .chat-send svg {
     width: 20px;
     height: 20px;
 }
-
