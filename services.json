@@ -1,30 +1,30 @@
 [
   {
-    "id": "web",
-    "title": "Веб-разработка",
-    "description": "Создание современных веб-приложений с использованием передовых технологий",
-    "image": "services/web-dev.svg",
-    "tags": ["React", "Vue", "Node.js"]
+    "id": "opensource",
+    "title": "Open Source Проекты",
+    "description": "Создаём и поддерживаем открытые проекты для сообщества",
+    "image": "services/opensource.svg",
+    "tags": ["GitHub", "Community", "Free"]
   },
   {
-    "id": "mobile",
-    "title": "Мобильные приложения",
-    "description": "Нативные и кроссплатформенные приложения для iOS и Android",
-    "image": "services/mobile-apps.svg",
-    "tags": ["React Native", "Flutter", "Swift"]
+    "id": "collaboration",
+    "title": "Коллаборация",
+    "description": "Совместная работа над идеями и их реализация",
+    "image": "services/collaboration.svg",
+    "tags": ["Hackathons", "Jams", "Partnerships"]
   },
   {
-    "id": "design",
-    "title": "UI/UX Дизайн",
-    "description": "Создание интуитивно понятных и визуально привлекательных интерфейсов",
-    "image": "services/ui-ux.svg",
-    "tags": ["Figma", "Prototyping", "Design Systems"]
+    "id": "education",
+    "title": "Образование",
+    "description": "Делимся знаниями через воркшопы, митапы и документацию",
+    "image": "services/education.svg",
+    "tags": ["Workshops", "Tutorials", "Mentoring"]
   },
   {
-    "id": "backend",
-    "title": "Backend разработка",
-    "description": "Надёжные и масштабируемые серверные решения",
-    "image": "services/backend.svg",
-    "tags": ["Python", "Node.js", "PostgreSQL"]
+    "id": "support",
+    "title": "Поддержка Разработчиков",
+    "description": "Помогаем разработчикам с кодом, идеями и ресурсами",
+    "image": "services/support.svg",
+    "tags": ["Consulting", "Code Review", "Resources"]
   }
 ]

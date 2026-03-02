@@ -1,44 +1,50 @@
 [
   {
     "id": 1,
-    "title": "Интернет-магазин",
-    "category": "web",
-    "description": "Полностью функциональный e-commerce с панелью управления",
-    "image": "portfolio/project1.jpg"
+    "title": "Community Dashboard",
+    "category": "opensource",
+    "description": "Открытая панель управления для локальных сообществ",
+    "image": "portfolio/project1.jpg",
+    "link": "https://github.com/lineness/community-dashboard"
   },
   {
     "id": 2,
-    "title": "Фитнес-трекер",
-    "category": "mobile",
-    "description": "Мобильное приложение для отслеживания тренировок",
-    "image": "portfolio/project2.jpg"
+    "title": "Dev Toolkit",
+    "category": "opensource",
+    "description": "Набор инструментов для разработчиков с открытым исходным кодом",
+    "image": "portfolio/project2.jpg",
+    "link": "https://github.com/lineness/dev-toolkit"
   },
   {
     "id": 3,
-    "title": "Фирменный стиль",
-    "category": "design",
-    "description": "Полный ребрендинг технологического стартапа",
-    "image": "portfolio/project3.jpg"
+    "title": "Hackathon Platform",
+    "category": "web",
+    "description": "Платформа для организации и проведения хакатонов",
+    "image": "portfolio/project3.jpg",
+    "link": "https://github.com/lineness/hackathon-platform"
   },
   {
     "id": 4,
-    "title": "SaaS Платформа",
-    "category": "web",
-    "description": "Облачное решение для бизнеса",
-    "image": "portfolio/project4.jpg"
+    "title": "Learning Resources",
+    "category": "education",
+    "description": "Библиотека бесплатных учебных материалов и курсов",
+    "image": "portfolio/project4.jpg",
+    "link": "https://github.com/lineness/learning-resources"
   },
   {
     "id": 5,
-    "title": "Доставка еды",
-    "category": "mobile",
-    "description": "Приложение для заказа и доставки пищи",
-    "image": "portfolio/project5.jpg"
+    "title": "Open Source Contribution Guide",
+    "category": "education",
+    "description": "Руководство по участию в open source проектах на русском",
+    "image": "portfolio/project5.jpg",
+    "link": "https://github.com/lineness/contribution-guide"
   },
   {
     "id": 6,
-    "title": "Аналитическая панель",
-    "category": "design",
-    "description": "Интерфейс для визуализации данных",
-    "image": "portfolio/project6.jpg"
+    "title": "Community Chat",
+    "category": "collaboration",
+    "description": "Открытый чат для разработчиков с модерацией и поддержкой",
+    "image": "portfolio/project6.jpg",
+    "link": "https://github.com/lineness/community-chat"
   }
 ]
