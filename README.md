@@ -1,4 +1,4 @@
-# ЛИНЕСС - Digital Agency Website
+# КВАНТОРА - Digital Agency Website
 
 Modern, animated website for a digital development agency with dark theme and smooth interactions.
 
