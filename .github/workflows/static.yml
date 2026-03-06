@@ -35,15 +35,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Verify starter-for-js directory
+        run: ls -la
+
       - name: Build starter-for-js
-        working-directory: ./starter-for-js
         run: |
+          cd starter-for-js
           npm ci
           npm run build
 
       - name: Publish to GitHub Packages
-        working-directory: ./starter-for-js
         run: |
+          cd starter-for-js
           npm config set //npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
           npm publish --registry https://npm.pkg.github.com/
         env:
@@ -52,7 +55,7 @@ jobs:
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './starter-for-js/dist'
+          path: 'starter-for-js/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
