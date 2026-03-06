@@ -41,3 +41,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Start development server
+        run: |
+          cd starter-for-js
+          npm install
+          npm run dev &
+        # Note: This runs dev server in background. Adjust as needed.
