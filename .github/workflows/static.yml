@@ -1,5 +1,5 @@
-# Workflow for building, publishing npm package, and deploying static site to GitHub Pages
-name: Deploy Starter for JS
+# Workflow for deploying static site to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -10,7 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  packages: write
 
 concurrency:
   group: "pages"
@@ -26,27 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
-      - name: Publish to GitHub Packages
-        run: |
-          cd starter-for-js
-          npm config set //npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
-          npm publish --registry https://npm.pkg.github.com/
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'starter-for-js/dist'
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
