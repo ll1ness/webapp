@@ -6,7 +6,7 @@
     'use strict';
 
     const GATEWAY_CONFIG = {
-        blockedCountries: ['US', 'UK', 'RU'],
+        blockedCountries: ['US', 'UK'],
         storageKeys: {
             intendedPage: 'gateway_intended_page',
             gatewayPassed: 'gateway_passed',
